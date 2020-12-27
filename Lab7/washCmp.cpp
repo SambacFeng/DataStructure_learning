@@ -1,8 +1,10 @@
 
 #include "washCmp.h"
 #include <iostream>
+#include <cmath>
+#include <ctime>
 
-const int WashCmp::CAPACITY = 5 + 1;
+//const int WashCmp::CAPACITY = 5 + 1;
 
 WashCmp::WashCmp()
 {
@@ -54,14 +56,14 @@ void WashCmp::processArrivalEmptyQ(int arrivalTime)
 
 void WashCmp::processArrivalNonEmptyQ(int arrivalTime)
 {
-	if (carQueue.size() < CAPACITY) //add the arrived car to the waiting queue
-	{
-		Car arrivedCar = Car(arrivalTime);
-		arrivedCar.printCarArrival(); //print the arrival information of the arrived car
-		carQueue.push(arrivedCar); //set the arrival time of the arrived car
-	}
-	else //the arrived car leaves
-		std::cout << "OVERFLOW!!!\n";
+	//if (carQueue.size() < CAPACITY) //add the arrived car to the waiting queue
+	//{
+	Car arrivedCar = Car(arrivalTime);
+	arrivedCar.printCarArrival(); //print the arrival information of the arrived car
+	carQueue.push(arrivedCar); //set the arrival time of the arrived car
+	//}
+	//else //the arrived car leaves
+	//	std::cout << "OVERFLOW!!!\n";
 }
 
 void WashCmp::processDeparture()
@@ -89,4 +91,23 @@ void WashCmp::printCmpStatistic()
 	std::cout << "Number of served cars: " << numServedCars << std::endl;
 	std::cout << "Total waiting time: " << totalWaitingTime << std::endl;
 	std::cout << "The average waiting time is: " << (double)totalWaitingTime / numServedCars << std::endl;
+}
+
+void WashCmp::init()
+{
+	double temp;
+	std::cout << "Please input the mean arrival rate:\n";
+	std::cin >> temp;
+	lambda = 1 / temp;
+	std::cout << "Please input the mean service rate:\n";
+	std::cin >> temp;
+	mu = 1 / temp;
+	std::cout << "Please input the number of cars to be simulate:\n";
+	std::cin >> totalServiceNumber;
+}
+
+double WashCmp::expRandomNumber(double a)
+{
+	srand((unsigned int)time(NULL));
+	return -a * (log(1 - rand() / (RAND_MAX + 1)));
 }
