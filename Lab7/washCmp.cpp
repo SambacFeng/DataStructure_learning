@@ -38,6 +38,15 @@ void WashCmp::simulation()
 	processRemain();
 }
 
+void WashCmp::simulation(int times)
+{
+	int arrivalTime;
+	for (int i = 0; i < times; i++)
+	{
+		//arrivalTime = 
+	}
+}
+
 int WashCmp::getNextArrival()
 {
 	int tempT;
@@ -104,6 +113,7 @@ void WashCmp::init()
 	mu = 1 / temp;
 	std::cout << "Please input the number of cars to be simulate:\n";
 	std::cin >> totalServiceNumber;
+	simulation(totalServiceNumber);
 }
 
 double WashCmp::expRandomNumber(double a)

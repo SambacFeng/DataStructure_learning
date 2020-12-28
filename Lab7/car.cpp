@@ -1,8 +1,10 @@
 
 #include "car.h"
 #include <iostream>
+#include <cmath>
+#include <ctime>
 
-const int Car::SERVICE_T = 10;
+//const int Car::SERVICE_T = 10;
 
 Car::Car()
 {
@@ -33,7 +35,7 @@ int Car::getWaitingTime()
 
 void Car::setDepartAndWaitTime(int startServiceTime)
 {
-	departureTime = startServiceTime + SERVICE_T;
+	departureTime = startServiceTime + serviceTime;
 	waitingTime = startServiceTime - arrivalTime;
 }
 
@@ -49,4 +51,10 @@ void Car::printCarArrival()
 {
 	std::cout << "A car arrives!\n";
 	std::cout << "\tArrival time: " << arrivalTime << std::endl;
+}
+
+double Car::generateServiceTime(double a)
+{
+	srand((unsigned int)time(NULL));
+	return -a * (log(1 - rand() / (RAND_MAX + 1)));
 }

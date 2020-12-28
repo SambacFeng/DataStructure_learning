@@ -31,6 +31,8 @@ public:
 	void simulation();
 	void printCmpStatistic();
 	void init();
+
+	void simulation(int times);
 };
 
 
