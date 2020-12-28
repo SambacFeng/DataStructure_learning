@@ -7,7 +7,9 @@ private:
 	int arrivalTime;
 	int departureTime;
 	int waitingTime;
-	const static int SERVICE_T;
+	//const static int SERVICE_T;
+
+	double serviceTime;
 
 public:
 	Car();
@@ -20,6 +22,8 @@ public:
 	void setDepartAndWaitTime(int currTime);
 	void printCarDeparture();
 	void printCarArrival();
+
+	double generateServiceTime(double a);
 };
 
 
