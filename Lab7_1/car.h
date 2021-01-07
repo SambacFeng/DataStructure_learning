@@ -13,7 +13,7 @@ private:
 
 public:
 	Car();
-	Car(int arrivalT);
+	Car(int arrivalT, double mu);
 
 	int getArrivalTime();
 	int getDepartureTime();
@@ -22,10 +22,6 @@ public:
 	void setDepartAndWaitTime(int currTime);
 	void printCarDeparture();
 	void printCarArrival();
-
-	void setDepartAndWaitTime(int startServiceTime, double mu);
-
-	double generateServiceTime(double a);
 };
 
 

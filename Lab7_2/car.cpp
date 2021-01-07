@@ -1,11 +1,7 @@
 
 #include "car.h"
 #include <iostream>
-#include <cmath>
-#include <ctime>
-
-//const int Car::SERVICE_T = 10;
-
+extern double u;
 Car::Car()
 {
 	arrivalTime = 0;
@@ -13,9 +9,12 @@ Car::Car()
 	waitingTime = 0;
 }
 
-Car::Car(int arrivalT)
+Car::Car(double arrivalT)
 {
 	arrivalTime = arrivalT;
+	departureTime = 0;
+	waitingTime = 0;
+	SERVICE_T = -1.0/u * log(1 - rand() / double(RAND_MAX + 1));//随机生成洗车所需时间
 }
 
 int Car::getArrivalTime()
@@ -33,19 +32,10 @@ int Car::getWaitingTime()
 	return waitingTime;
 }
 
-void Car::setDepartAndWaitTime(int startServiceTime)
+
+void Car::setDepartAndWaitTime(double startServiceTime)
 {
-	departureTime = startServiceTime + serviceTime;
-	waitingTime = startServiceTime - arrivalTime;
-}
-
-void Car::setDepartAndWaitTime(int startServiceTime, double mu)
-{
-	srand((unsigned int)time(NULL));
-
-	departureTime = startServiceTime + (-mu * (log(1 - rand() / (double)(RAND_MAX))));
-
-	std::cout << (-mu * (log(1 - rand() / (double)(RAND_MAX + 1)))) << std::endl;
+	departureTime = startServiceTime + SERVICE_T;
 	waitingTime = startServiceTime - arrivalTime;
 }
 
@@ -61,10 +51,4 @@ void Car::printCarArrival()
 {
 	std::cout << "A car arrives!\n";
 	std::cout << "\tArrival time: " << arrivalTime << std::endl;
-}
-
-double Car::generateServiceTime(double a)
-{
-	srand((unsigned int)time(NULL));
-	return -a * (log(1 - rand() / (RAND_MAX + 1)));
 }
