@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cmath>
 
-const int WashCmp::CAPACITY = 5 + 1;
+//const int WashCmp::CAPACITY = 5 + 1;
 
 WashCmp::WashCmp()
 {
@@ -69,16 +69,11 @@ void WashCmp::processArrivalEmptyQ(int arrivalTime)
 
 void WashCmp::processArrivalNonEmptyQ(int arrivalTime)
 {
-	//if (carQueue.size() < CAPACITY) //add the arrived car to the waiting queue
-	//{
 	Car arrivedCar = Car(arrivalTime, mu);
 	arrivedCar.printCarArrival(); //print the arrival information of the arrived car
 	carQueue.push(arrivedCar); //set the arrival time of the arrived car
 	if (carQueue.size() > maxQueueLength)
 		maxQueueLength = carQueue.size();
-	//}
-	//else //the arrived car leaves
-	//	std::cout << "OVERFLOW!!!\n";
 }
 
 void WashCmp::processDeparture()
