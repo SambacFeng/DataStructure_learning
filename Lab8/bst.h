@@ -41,6 +41,8 @@ public:
 	//please implement this
 	int height() const;
 
+	int getHeight(Node* _node) const;
+
 	Iterator insert(const T& item);
 
 	~BinSearchTree();
@@ -87,7 +89,18 @@ int BinSearchTree<T>::size() const
 template<typename T>
 int BinSearchTree<T>::height() const
 {
-	//please implement this
+	return getHeight(root);
+}
+
+template<typename T>
+int BinSearchTree<T>::getHeight(Node* _node) const
+{
+	int height;
+	if (_node == NULL)return -1;
+	int leftHeight = getHeight(_node->left);
+	int rightHeight = getHeight(_node->right);
+	(leftHeight > rightHeight) ? (height = leftHeight + 1) : (height = rightHeight + 1);
+	return height;
 }
 
 template<typename T>
