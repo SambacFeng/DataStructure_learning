@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 #define NULL 0
@@ -95,12 +96,7 @@ int BinSearchTree<T>::height() const
 template<typename T>
 int BinSearchTree<T>::getHeight(Node* _node) const
 {
-	int height;
-	if (_node == NULL)return -1;
-	int leftHeight = getHeight(_node->left);
-	int rightHeight = getHeight(_node->right);
-	(leftHeight > rightHeight) ? (height = leftHeight + 1) : (height = rightHeight + 1);
-	return height;
+	return _node == NULL ? -1 : max(getHeight(_node->left) + 1, getHeight(_node->right) + 1);
 }
 
 template<typename T>
